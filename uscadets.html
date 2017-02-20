@@ -172,6 +172,7 @@
     </ul>
     <br>
     <br>
+    <a href="#" onclick="return outsideUS();">Outside of the U.S.?</a>
     <h3>Points by State</h3>
     <div id="target">
         <!-- all divs will append here -->
@@ -481,6 +482,12 @@
             <div id="label">Puerto Rico</div>
         </div>
     </div>
+
+    <div id="myProgress">
+        <div id="usa53bar" class="myBar">
+            <div id="label">Outside of the U.S.</div>
+        </div>
+    </div>
 </div>
 <br>
 <br>
@@ -504,6 +511,8 @@
                     <input class="form-control" id="last" placeholder="Last"><br>
                     <label for="ex2">Email</label>
                     <input class="form-control" id="email"><br>
+                    <label for="ex2" id="lblLocation">Location</label>
+                    <input class="form-control" id="location"><br>
                     <label for="ex2">Years Marched</label><br>
                     <table>
                         <tr>
@@ -579,6 +588,8 @@
         var page2 = document.getElementById("page2");
         var txtLast = document.getElementById("last");
         var btnClose = document.getElementById("btnClose");
+        var txtLocation = document.getElementById("location");
+        var lblLocation = document.getElementById("lblLocation");
 
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
@@ -655,6 +666,7 @@
             alumni.set("FirstName", $("#first").val());
             alumni.set("LastName", $("#last").val());
             alumni.set("Email", $("#email").val());
+            alumni.set("Location", $("#location").val());
             alumni.set("State", selectedState);
             alumni.set("StateClass", selectedStateClass);
             alumni.set("years", getAlumniYears());
@@ -744,23 +756,9 @@
                     var rLink = e.children("A").eq(0).attr("href"),
                         rText = e.children("A").eq(0).text(),
                         rClass = e.attr("class").split(" ")[0];
+                        outside = false;
+                    openBox(rText, rClass, "If you're an alumni living in " + rText + ", let us know and earn points for your state!", false);
 
-                    //hide the loader
-                    loader.style.display = "none";
-                    //show the button
-                    btnSubmit.style.display ="block";
-
-                    lblState.innerHTML = rText;
-                    lblPoints.innerHTML = "Alumni living in " + rText + " earn +1 Point for their state.";
-                    lblDesc.innerHTML = "If you're an alumni living in " + rText + ", let us know and earn points for your state!";
-                    modal.style.display = "block";
-                    selectedState = rText;
-                    selectedStateClass = rClass;
-                    $("#first").val("");
-                    $("#last").val("");
-                    $("#email").val("");
-                    page2.style.display = "none";
-                    page1.style.display = "block";
                 },
                 "onHover" : function(e){
                     // SAMPLE VARS;
@@ -778,12 +776,40 @@
 
         }
 
+        function openBox(stateName, stateClass, desc, outside) {
+            //hide the loader
+            loader.style.display = "none";
+            //show the button
+            btnSubmit.style.display ="block";
+
+            lblState.innerHTML = stateName;
+            lblPoints.innerHTML = "Alumni living in " + stateName + " earn +1 Point for their state.";
+            lblDesc.innerHTML = desc
+            modal.style.display = "block";
+            selectedState = stateName;
+            selectedStateClass = stateClass;
+            $("#first").val("");
+            $("#last").val("");
+            $("#email").val("");
+            page2.style.display = "none";
+            page1.style.display = "block";
+
+            if (outside) {
+                lblPoints.style.display = "none";
+                txtLocation.style.display = "block";
+                lblLocation.style.display = "block";
+            } else {
+                lblPoints.style.display = "block";
+                txtLocation.style.display = "none";
+                lblLocation.style.display = "none";
+            }
+        }
 
         function setBars() {
             console.log("setting bar");
             //get total of country
             var total = 0
-            for (var x=1; x<53; x++) {
+            for (var x=1; x<54; x++) {
                 var reg = "usa" + x;
                 var count = statesObject.get(reg);
                 if (count) {
@@ -792,7 +818,7 @@
             }
 
 
-            for (var x=1; x<53; x++) {
+            for (var x=1; x<54; x++) {
                 var reg = "usa" + x;
                 var regBar = reg + "bar";
                 var count = statesObject.get(reg);
@@ -913,6 +939,13 @@
                 opt.innerHTML = i;
                 select.appendChild(opt);
             }
+        }
+
+        var outside = false;
+        function outsideUS() {
+            console.log("outside");
+            outside = true;
+            openBox("Outside of the U.S.", "usa53", "If you're an alumni living outside of the U.S., let us know!", true);
         }
 
     </script>
