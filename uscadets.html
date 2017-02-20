@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>United States of Cadets</title>
+    <!-- CSSMap STYLESHEET - AUSTRALIA -->
+    <!-- CSSMap STYLESHEET - UNITED STATES OF AMERICA -->
+    <link rel="stylesheet" type="text/css" href="cssmap-usa/cssmap-usa.css" media="screen" />
+    <!-- jQuery -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parse/1.9.2/parse.js"></script>
+
+    <!-- CSSMap SCRIPT -->
+    <script type="text/javascript" src="https://cssmapsplugin.com/5/jquery.cssmap.min.js"></script>
+
+    <style>
+        #myProgress {
+            width: 100%;
+            background-color: #ddd;
+        }
+
+        #myBar {
+            height: 30px;
+            background-color: #4CAF50;
+        }
+
+        #label {
+            text-align: center;
+            line-height: 30px;
+            color: white;
+        }
+
+        select {
+            width:70px;
+        }
+
+        #years option{
+            width:100px;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 0px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 28%;
+        }
+
+        /* The Close Button */
+        .close, .close2 {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .hoverRow:hover {
+            color:#700606
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3; /* Light grey */
+            border-top: 5px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1.2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+<!-- page content -->
+<!-- CSSMap - United States of America -->
+<div id="map-usa">
+    <ul class="usa">
+        <li class="usa1"><a href="#alabama">Alabama</a></li>
+        <li class="usa2"><a href="#alaska">Alaska</a></li>
+        <li class="usa3"><a href="#arizona">Arizona</a></li>
+        <li class="usa4"><a href="#arkansas">Arkansas</a></li>
+        <li class="usa5"><a href="#california">California</a></li>
+        <li class="usa6"><a href="#colorado">Colorado</a></li>
+        <li class="usa7"><a href="#connecticut">Connecticut</a></li>
+        <li class="usa8"><a href="#delaware">Delaware</a></li>
+        <li class="usa9"><a href="#florida">Florida</a></li>
+        <li class="usa10"><a href="#georgia">Georgia</a></li>
+        <li class="usa11"><a href="#hawaii" class="tooltip-middle">Hawaii</a></li>
+        <li class="usa12"><a href="#idaho">Idaho</a></li>
+        <li class="usa13"><a href="#illinois">Illinois</a></li>
+        <li class="usa14"><a href="#indiana">Indiana</a></li>
+        <li class="usa15"><a href="#iowa">Iowa</a></li>
+        <li class="usa16"><a href="#kansas">Kansas</a></li>
+        <li class="usa17"><a href="#kentucky">Kentucky</a></li>
+        <li class="usa18"><a href="#louisiana">Louisiana</a></li>
+        <li class="usa19"><a href="#maine">Maine</a></li>
+        <li class="usa20"><a href="#maryland">Maryland</a></li>
+        <li class="usa21"><a href="#massachusetts">Massachusetts</a></li>
+        <li class="usa22"><a href="#michigan">Michigan</a></li>
+        <li class="usa23"><a href="#minnesota">Minnesota</a></li>
+        <li class="usa24"><a href="#mississippi">Mississippi</a></li>
+        <li class="usa25"><a href="#missouri">Missouri</a></li>
+        <li class="usa26"><a href="#montana">Montana</a></li>
+        <li class="usa27"><a href="#nebraska">Nebraska</a></li>
+        <li class="usa28"><a href="#nevada">Nevada</a></li>
+        <li class="usa29"><a href="#new-hampshire">New Hampshire</a></li>
+        <li class="usa30"><a href="#new-jersey">New Jersey</a></li>
+        <li class="usa31"><a href="#new-mexico">New Mexico</a></li>
+        <li class="usa32"><a href="#new-york">New York</a></li>
+        <li class="usa33"><a href="#north-carolina">North Carolina</a></li>
+        <li class="usa34"><a href="#north-dakota">North Dakota</a></li>
+        <li class="usa35"><a href="#ohio">Ohio</a></li>
+        <li class="usa36"><a href="#oklahoma">Oklahoma</a></li>
+        <li class="usa37"><a href="#oregon">Oregon</a></li>
+        <li class="usa38"><a href="#pennsylvania">Pennsylvania</a></li>
+        <li class="usa39"><a href="#rhode-island">Rhode Island</a></li>
+        <li class="usa40"><a href="#south-carolina">South Carolina</a></li>
+        <li class="usa41"><a href="#south-dakota">South Dakota</a></li>
+        <li class="usa42"><a href="#tennessee">Tennessee</a></li>
+        <li class="usa43"><a href="#texas">Texas</a></li>
+        <li class="usa44"><a href="#utah">Utah</a></li>
+        <li class="usa45"><a href="#vermont">Vermont</a></li>
+        <li class="usa46"><a href="#virginia">Virginia</a></li>
+        <li class="usa47"><a href="#washington">Washington</a></li>
+        <li class="usa48"><a href="#washington-dc">Washington DC</a></li>
+        <li class="usa49"><a href="#west-virginia">West Virginia</a></li>
+        <li class="usa50"><a href="#wisconsin">Wisconsin</a></li>
+        <li class="usa51"><a href="#wyoming">Wyoming</a></li>
+        <li class="usa52"><a href="#puerto-rico">Puerto Rico</a></li>
+    </ul>
+    <br>
+    <br>
+    <h3>Points by State</h3>
+    <div id="target">
+        <!-- all divs will append here -->
+    </div>
+    <div id="myProgressBars">
+
+        <div id="myProgress">
+            <div id="usa1bar" class="myBar">
+                <div id="label">Alabama</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa2bar" class="myBar">
+                <div id="label">Alaska</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa3bar" class="myBar">
+                <div id="label">Arizona</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa4bar" class="myBar">
+                <div id="label">Arkansas</div>
+            </div>
+        </div>
+        <div id="myProgress">
+            <div id="usa5bar" class="myBar">
+                <div id="label">California</div>
+            </div>
+        </div>
+        <div id="myProgress">
+            <div id="usa6bar" class="myBar">
+                <div id="label">Colorado</div>
+            </div>
+        </div>
+        <div id="myProgress">
+            <div id="usa7bar" class="myBar">
+                <div id="label">Connecticut</div>
+            </div>
+        </div>
+        <div id="myProgress">
+            <div id="usa8bar" class="myBar">
+                <div id="label">Delaware</div>
+            </div>
+        </div>
+        <div id="myProgress">
+            <div id="usa9bar" class="myBar">
+                <div id="label">Florida</div>
+            </div>
+        </div>
+        <div id="myProgress">
+            <div id="usa10bar" class="myBar">
+                <div id="label">Georgia</div>
+            </div>
+        </div>
+        <div id="myProgress">
+            <div id="usa11bar" class="myBar">
+                <div id="label">Hawaii</div>
+            </div>
+        </div>
+        <div id="myProgress">
+            <div id="usa12bar" class="myBar">
+                <div id="label">Idaho</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa13bar" class="myBar">
+                <div id="label">Illinois</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa14bar" class="myBar">
+                <div id="label">Indiana</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa15bar" class="myBar">
+                <div id="label">Iowa</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa16bar" class="myBar">
+                <div id="label">Kansas</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa17bar" class="myBar">
+                <div id="label">Kentucky</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa18bar" class="myBar">
+                <div id="label">Louisiana</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa19bar" class="myBar">
+                <div id="label">Maine</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa20bar" class="myBar">
+                <div id="label">Maryland</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa21bar" class="myBar">
+                <div id="label">Massachusetts</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa22bar" class="myBar">
+                <div id="label">Michigan</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa23bar" class="myBar">
+                <div id="label">Minnesota</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa24bar" class="myBar">
+                <div id="label">Mississippi</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa25bar" class="myBar">
+                <div id="label">Missouri</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa26bar" class="myBar">
+                <div id="label">Montana</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa27bar" class="myBar">
+                <div id="label">Nebraska</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa28bar" class="myBar">
+                <div id="label">Nevada</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa29bar" class="myBar">
+                <div id="label">New Hampshire</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa30bar" class="myBar">
+                <div id="label">New Jersey</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa31bar" class="myBar">
+                <div id="label">New Mexico</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa32bar" class="myBar">
+                <div id="label">New York</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa33bar" class="myBar">
+                <div id="label">North Carolina</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa34bar" class="myBar">
+                <div id="label">North Dakota</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa35bar" class="myBar">
+                <div id="label">Ohio</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa36bar" class="myBar">
+                <div id="label">Oklahoma</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa37bar" class="myBar">
+                <div id="label">Oregon</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa38bar" class="myBar">
+                <div id="label">Pennsylvania</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa39bar" class="myBar">
+                <div id="label">Rhode Island</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa40bar" class="myBar">
+                <div id="label">South Carolina</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa41bar" class="myBar">
+                <div id="label">South Dakota</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa42bar" class="myBar">
+                <div id="label">Tennessee</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa43bar" class="myBar">
+                <div id="label">Texas</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa44bar" class="myBar">
+                <div id="label">Utah</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa45bar" class="myBar">
+                <div id="label">Vermont</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa46bar" class="myBar">
+                <div id="label">Virginia</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa47bar" class="myBar">
+                <div id="label">Washington</div>
+            </div>
+        </div>
+
+        <div id="myProgress">
+            <div id="usa48bar" class"myBar">
+            <div id="label">Washington DC</div>
+        </div>
+    </div>
+
+    <div id="myProgress">
+        <div id="usa49bar" class="myBar">
+            <div id="label">West Virginia</div>
+        </div>
+    </div>
+
+    <div id="myProgress">
+        <div id="usa50bar" class="myBar">
+            <div id="label">Wisconsin</div>
+        </div>
+    </div>
+
+    <div id="myProgress">
+        <div id="usa51bar" class="myBar">
+            <div id="label">Wyoming</div>
+        </div>
+    </div>
+
+    <div id="myProgress">
+        <div id="usa52bar" class="myBar">
+            <div id="label">Puerto Rico</div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+</div>
+<!-- END OF THE CSSMap - United States of America -->
+
+
+
+<!-- The Modal --><div class="modal col-lg" id="myModal">
+    <!-- Modal content -->	<div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="container">
+        <form>
+            <div class="form-group col-lg">
+                <div id = "page1" class="col-sm-3">
+                    <h3 id="lblState">Texas</h3>
+                    <p id="lblDesc">If you're an alumni, earn points by letting us know!</p><br>
+                    <label for="ex2">Name</label>
+                    <input autofocus=""class="form-control" id="first" placeholder="First"><br>
+                    <input class="form-control" id="last" placeholder="Last"><br>
+                    <label for="ex2">Email</label>
+                    <input class="form-control" id="email"><br>
+                    <label for="ex2">Years Marched</label><br>
+                    <table>
+                        <tr>
+                            <td>
+                                <form action="/action_page.php">
+                                    <select name="years" id="mySelect" size="10" width=100px multiple>
+
+                                    </select>
+
+                                </form>
+                            </td>
+                            <td>
+                                <p>Hold down the <br><b>Ctrl (Windows)</b> or <br><b>Command (Mac)</b><br>button to select multiple years.</p>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br>
+
+                    <div class="loader" id="loader"></div><span class="btnSubmit"><button class="btn btn-primary btn-sm" id="btnSubmit" type="button">Submit</button><p id="lblPoints"+1 for Idaho</p><br></span>
+                    <canvas height="400"></canvas>
+                </div>
+            </div>
+            <div id = "page2" class="col-sm-3">
+                <h3 id="lblPointFor">+1 Point for </h3>
+                <h3>Bonus Points</h3>
+                <p>Have photos from when you marched? Send photos to <a href="mailto:ktrombetti@yea.org" target="_top">Katie Trombetti</a> to earn bonus points for your state!</p>
+                <br>
+                <button class="btn btn-secondary btn-sm" id="btnClose" type="button">Close</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+<!-- The Modal --><div class="modal col-3" id="myModal2">
+    <!-- Modal content -->	<div class="modal-content">
+    <span class="close2">&times;</span>
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <h3 id="lblPointFor">+1 Point for </h3>
+                    <h3>Bonus Points</h3>
+                    <p>Have photos from when you marched? Send photos to <a href="mailto:ktrombetti@yea.org" target="_top">Katie Trombetti</a> to earn bonus points for your state!</p>
+                </div>
+            </div>
+            <div>
+
+
+
+            </div>
+        </form>
+    </div>
+    </body>
+
+    <script type="text/javascript">
+
+        Parse.initialize("wx8eMIWy1f9e60WrQJYUI81jlk5g6YYAPPmwxequ");
+        Parse.serverURL = 'https://corpsboard.herokuapp.com/parse'
+
+        var statesObject;
+
+        var mapObj = document.getElementById('map-usa');
+        var modal = document.getElementById('myModal');
+        var modal2 = document.getElementById('myModal2');
+        var btnSubmit = document.getElementById("btnSubmit");
+        var lblState = document.getElementById("lblState");
+        var lblDesc = document.getElementById("lblDesc");
+        var lblPoints = document.getElementById("lblPoints");
+        var lblPointFor = document.getElementById("lblPointFor");
+        var page1 = document.getElementById("page1");
+        var page2 = document.getElementById("page2");
+        var txtLast = document.getElementById("last");
+        var btnClose = document.getElementById("btnClose");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        var span2 = document.getElementsByClassName("close2")[0];
+        var btnSubmit = document.getElementsByClassName("btnSubmit")[0];
+
+        var selectedState = "";
+        var selectedStateClass = "";
+        // When the user clicks on <span> (x), close the modal
+
+        function validateForm() {
+            var x = document.forms["myForm"]["email"].value;
+            var atpos = x.indexOf("@");
+            var dotpos = x.lastIndexOf(".");
+            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+        }
+
+        function getAlumniYears() {
+            console.log("getting years");
+            var select = document.getElementById('mySelect');
+            var result = [];
+            var options = select && select.options;
+            var opt;
+
+            for (var i=0, iLen=options.length; i<iLen; i++) {
+                opt = options[i];
+
+                if (opt.selected) {
+                    result.push(opt.value || opt.text);
+                }
+            }
+            return result;
+        }
+
+        btnSubmit.onclick = function() {
+
+            var first = $("#first").val();
+            var last = $("#last").val();
+            var email = $("#email").val();
+
+            console.log(first);
+            if (!first) {
+                alert("Please complete all fields.");
+                return;
+            }
+            if (!last) {
+                alert("Please complete all fields.");
+            }
+
+            var x = email;
+            var atpos = x.indexOf("@");
+            var dotpos = x.lastIndexOf(".");
+            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+                alert("Please enter a valid email address.");
+                return false;
+            } else {
+                save();
+            }
+        }
+
+        function save(){
+
+
+
+            loader.style.display = "block";
+            lblPointFor.innerHTML = "+1 Point for " + selectedState;
+            btnSubmit.style.display = "none";
+            var Alumni = Parse.Object.extend("USCAlumni");
+            var alumni = new Alumni();
+
+            alumni.set("FirstName", $("#first").val());
+            alumni.set("LastName", $("#last").val());
+            alumni.set("Email", $("#email").val());
+            alumni.set("State", selectedState);
+            alumni.set("StateClass", selectedStateClass);
+            alumni.set("years", getAlumniYears());
+            console.log(getAlumniYears());
+
+
+            alumni.save(null, {
+                success: function(alumni) {
+                    page1.style.display = "none";
+                    page2.style.display = "block";
+                    loader.style.display = "none";
+                    // Execute any logic that should take place after the object is saved.
+                },
+                error: function(alumni, error) {
+                    // Execute any logic that should take place if the save fails.
+                    // error is a Parse.Error with an error code and message.
+                    alert('Failed to create new object, with error code: ' + error.message);
+                }
+            });
+
+            // var x = selectedState.get(selectedStateClass);
+            // if (x) {
+            //   x += 1;
+            // } else {
+            //   x = 1;
+            // }
+            statesObject.increment(selectedStateClass);
+
+            statesObject.save(null, {
+                success: function(alumni) {
+                    console.log("Updated count to: " + x);
+                    // Execute any logic that should take place after the object is saved.
+                },
+                error: function(alumni, error) {
+                    // Execute any logic that should take place if the save fails.
+                    // error is a Parse.Error with an error code and message.
+                    alert('Failed to create new object, with error code: ' + error.message);
+                }
+            });
+        }
+
+        btnClose.onclick = function() {
+            modal2.style.display = "none";
+            modal.style.display = "none";
+            refreshMap();
+            getStatesObject();
+        }
+
+        span2.onclick = function() {
+            //  modal.style.display = "none";
+            modal2.style.display = "none";
+            getStatesObject();
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+            getStatesObject();
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+            getStatesObject();
+        }
+
+        //END MODAL
+
+        $(document).ready(function(){
+
+            refreshMap();
+            addYears();
+        });
+
+        function refreshMap() {
+            // CSSMap;
+            $("#map-usa").CSSMap({
+                "size": 1450,
+                "mapStyle": "default",
+                "tooltips": "floating-top-center",
+                "responsive": "auto",
+                "tapOnce": true,
+                "mobileSupport": true,
+                "onClick" : function(e){
+                    // SAMPLE VARS;
+                    var rLink = e.children("A").eq(0).attr("href"),
+                        rText = e.children("A").eq(0).text(),
+                        rClass = e.attr("class").split(" ")[0];
+
+                    //hide the loader
+                    loader.style.display = "none";
+                    //show the button
+                    btnSubmit.style.display ="block";
+
+                    lblState.innerHTML = rText;
+                    lblPoints.innerHTML = "Alumni living in " + rText + " earn +1 Point for their state.";
+                    lblDesc.innerHTML = "If you're an alumni living in " + rText + ", let us know and earn points for your state!";
+                    modal.style.display = "block";
+                    selectedState = rText;
+                    selectedStateClass = rClass;
+                    $("#first").val("");
+                    $("#last").val("");
+                    $("#email").val("");
+                    page2.style.display = "none";
+                    page1.style.display = "block";
+                },
+                "onHover" : function(e){
+                    // SAMPLE VARS;
+                    var rLink = e.children("A").eq(0).attr("href"),
+                        rText = e.children("A").eq(0).text(),
+                        rClass = e.attr("class").split(" ")[0];
+                    // YOUR CUSTOM FUNCTIONS GOES HERE;
+
+                },
+                "onLoad" : function(e){
+                    getStatesObject();
+                }
+            })
+            // END OF THE CSSMap;
+
+        }
+
+
+        function setBars() {
+            console.log("setting bar");
+            //get total of country
+            var total = 0
+            for (var x=1; x<53; x++) {
+                var reg = "usa" + x;
+                var count = statesObject.get(reg);
+                if (count) {
+                    total = total + count
+                }
+            }
+
+
+            for (var x=1; x<53; x++) {
+                var reg = "usa" + x;
+                var regBar = reg + "bar";
+                var count = statesObject.get(reg);
+                if (count) {
+                    console.log("Count: " + count);
+                    var bar = document.getElementById(regBar);
+                    var percent = count / total * 100;
+                    bar.setAttribute("style", "height:30px; background-color: #3b130b; width:" + percent + "%;");
+                } else {
+                    console.log("No count");
+                }
+            }
+
+            console.log("Total points: " + total);
+        }
+
+        function activateRegions() {
+            setBars();
+            console.log("TEST TEST");
+            console.log("Activating regions");
+            var arrayOfRegions = [];
+
+            // var ul = $('ul.viewProgress');
+
+
+            for (var x=1; x<53; x++) {
+                var reg = "usa" + x;
+                var count = statesObject.get(reg);
+                if (count > 0) {
+                    arrayOfRegions.push(reg);
+                }
+
+                //var x = document.getElementById(reg + "bar").style.width;
+
+//          var bar = document.getElementsByClassName(reg+"bar")[0];
+//          bar.setAttribute("style", "width: 90%;");
+//          bar.setAttribute("style", "height:30px;");
+//          bar.setAttribute("style", "background-color:#4CAF50;");
+//          console.log(bar);
+            }
+
+            var getItems = $("#map-usa").find("LI")
+            for(var i=0, region; region = getItems[i]; i++){
+                var regionClass = region.className.split(" ")[0];
+                $(region).removeClass("active-region");
+                if(arrayOfRegions.indexOf(regionClass) !== -1){
+                    $(region).addClass("active-region");
+                }
+//          var y = document.getElementsByClassName(reg);
+//          ul.append('<div class="progress"><div class="progress-bar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">70%</div></div>');
+            } // END for(i);
+        }
+
+
+        function getStatesObject() {
+
+            var States = Parse.Object.extend("USCStates");
+            var query = new Parse.Query(States);
+            query.limit(1);
+            query.find({
+                success: function(results) {
+                    var obj = results[0];
+                    statesObject = obj;
+                    activateRegions();
+                },
+                error: function(error) {
+                    alert("Error: " + error.code + " " + error.message);
+                }
+            });
+        }
+
+        var start = 100;
+        var mid = 145;
+        var end = 250;
+        var width = 22;
+        var leftX = start;
+        var leftY = start;
+        var rightX = mid - (width / 2.7);
+        var rightY = mid + (width / 2.7);
+        var animationSpeed = 10;
+
+        var ctx = document.getElementsByTagName('canvas')[0].getContext('2d');
+        ctx.lineWidth = width;
+        ctx.strokeStyle = 'rgba(0, 150, 0, 1)';
+
+        for (i = start; i < mid; i++) {
+            var drawLeft = window.setTimeout(function () {
+                ctx.beginPath();
+                ctx.moveTo(start, start);
+                ctx.lineTo(leftX, leftY);
+                ctx.stroke();
+                leftX++;
+                leftY++;
+            }, 1 + (i * animationSpeed) / 3);
+        }
+
+        for (i = mid; i < end; i++) {
+            var drawRight = window.setTimeout(function () {
+                ctx.beginPath();
+                ctx.moveTo(leftX, leftY);
+                ctx.lineTo(rightX, rightY);
+                ctx.stroke();
+                rightX++;
+                rightY--;
+            }, 1 + (i * animationSpeed) / 3);
+        }
+        function addYears() {
+            var x = document.getElementById("mySelect");
+            var option = document.createElement("option");
+
+            var min = 1934,
+                max = 2017,
+                select = document.getElementById('mySelect');
+
+            for (var i = min; i<=max; i++){
+                var opt = document.createElement('option');
+                opt.value = i;
+                opt.innerHTML = i;
+                select.appendChild(opt);
+            }
+        }
+
+    </script>
+</html>
