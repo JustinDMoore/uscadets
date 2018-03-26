@@ -523,16 +523,18 @@
 
                     <br>
 
-                    <div class="loader" id="loader"></div><span class="btnSubmit"><button class="btn btn-primary btn-sm" id="btnSubmit" type="button">NEXT</button><p id="lblPoints"+1 Cadet for Idaho</p><br></span>
-                      <canvas height="400"></canvas>
+                    <div class="loader" id="loader"></div><span class="btnSubmit"><button class="btn btn-primary btn-sm" id="btnSubmit" type="button">NEXT</button><p id="lblPoints"></p><br></span>
+
                   </div>
               </div>
               <div id = "page2" class="col-sm-3">
-                <h3 id="lblPointFor">+1 Cadet for </h3>
-                  <h3>O HOLY NAME</h3>
-                    <p>Let's make history. <a href="https://yea.org/index.php?option=com_content&view=article&layout=edit&id=1996" target="_top">Click here </a> to get started!</p>
+                <h4 id="lblPointFor">+1 Cadet for </h4>
+                  <h3>OH HOLY NAME</h3>
+                  <p>Let's make history.</p>
+
+                 <button id="btnClose" type="button" class="btn btn-primary">Get Started</button>
                     <br>
-                    <button class="btn btn-secondary btn-sm" id="btnClose" type="button">Close</button>
+                    <button class="btn btn-secondary btn-sm" id="btnClose2" type="button"></button>
                   </div>
             </form>
           </div>
@@ -546,8 +548,8 @@
           <form>
             <div class="form-group">
               <div class="col-sm-3">
-                <h3 id="lblPointFor">+1 Cadet for </h3>
-                  <h3>O HOLY NAME</h3>
+                <h4 id="lblPointFor">+1 Cadet for </h4>
+                  <h3>OH HOLY NAME</h3>
                   <p>Let's make history. <a href="https://yea.org/index.php?option=com_content&view=article&layout=edit&id=1996" target="_top">Click here</a> to earn bonus points for your state!</p>
                   </div>
                 </div>
@@ -647,7 +649,7 @@
 
 
         loader.style.display = "block";
-        lblPointFor.innerHTML = "+1 Point for " + selectedState;
+        lblPointFor.innerHTML = "+1 Cadet for " + selectedState;
         btnSubmit.style.display = "none";
           var Alumni = Parse.Object.extend("USCAlumni");
           var alumni = new Alumni();
@@ -701,6 +703,7 @@
         modal.style.display = "none";
         refreshMap();
         getStatesObject();
+        window.open("https://yea.org/index.php?option=com_content&view=article&layout=edit&id=1996");
       }
 
       span2.onclick = function() {
@@ -751,7 +754,7 @@
          btnSubmit.style.display ="block";
 
          lblState.innerHTML = rText;
-         lblPoints.innerHTML = "+1 Point for " + rText;
+         lblPoints.innerHTML = "+1 Cadet for " + rText;
          modal.style.display = "block";
          selectedState = rText;
          selectedStateClass = rClass;
